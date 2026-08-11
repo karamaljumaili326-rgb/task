@@ -1,0 +1,11 @@
+transaction_id,amount,customer_type,date,jurisdiction,counterparty_country
+TX001,5000,individual,2024-01-01,USA,Canada
+TX002,15000,individual,2024-01-02,Iran,Iran
+TX003,12000,business,2024-01-03,UK,Syria
+TX004,8000,individual,2024-01-04,Germany,Belgium
+TX005,55000,business,2024-01-05,USA,France
+TX006,56000,business,2024-01-06,Canada,France
+TX007,9000,individual,2024-01-07,Japan,Germany
+TX008,11000,individual,2024-01-08,Russia,USA
+TX009,60000,business,2024-01-09,USA,North Korea
+TX010,7000,business,2024-01-10,USA,UK

@@ -1,0 +1,32 @@
+artifacts = ["/app/compliance_report.json"]
+
+[task]
+name = "dynamo/compliance-report-generator"
+description = "Parse transaction data and generate regulatory compliance violations report with OFAC/KYC/AML/Jurisdiction checks"
+
+[metadata]
+category = "Regulated Knowledge Work and Business Operations"
+subcategory = "Personal Assistant Productivity"
+model_tested = "Opus-4.8"
+agent_tested = "Terminus-2"
+task_objective = ["implement", "analyze"]
+artifact_type = ["configuration_file", "report"]
+expert_time_estimate_hours = 2
+difficulty_explanation = "Hard because it requires joining multiple data sources (CSV + approvals file), implementing temporal windowing logic (7-day rolling for AML), correctly interpreting regulatory thresholds (>$10k vs. =$10k), and handling edge cases in date parsing, missing approvals, and malformed input. The agent must understand the regulatory domain and translate it into precise code."
+solution_explanation = "Parse the CSV with Python's csv module, build a transaction dictionary, load approvals from the file, iterate through transactions applying each regulatory rule (KYC amount + customer_type check, AML 7-day window aggregation, OFAC country matching, Jurisdiction pre-approval), and serialize results as JSON with correct severity logic."
+verification_explanation = "Tests verify the JSON schema is correct, that each violation type is identified and categorized properly, that edge cases (empty files, missing fields, boundary amounts) are handled, that the 7-day AML window is computed correctly, and that severity is set based on violation counts."
+
+[verifier]
+timeout_sec = 120.0
+
+[agent]
+timeout_sec = 300.0
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 1
+memory_mb = 2048
+storage_mb = 10240
+gpus = 0
+allow_internet = true
+mcp_servers = []
